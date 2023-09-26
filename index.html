@@ -1,12 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="src/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
   </head>
+
   <body>
-    <script src="script.js"></script>
+    <div class="container">
+      <div class="weather-app">
+          <h1 id="date"></h1>
+            <h1 id="hour"></h1>
+        <video autoplay loop muted>
+    <source src="images/sunset.mp4" type="video/mp4">
+    </video>
+      
+        <form class="search-form" id="searchCity">
+          <div class="row">
+            <div class="col-6">
+              <input
+                type="search"
+                placeholder="Type a city.."
+                autofocus="on"
+                autocomplete="off"
+                id="cityInput"
+                class="form-control shadow-sm"
+              />
+            </div>
+            <div class="col-3">
+              <input
+                type="submit"
+                value="Search"
+                class="form-control btn btn-primary shadow-sm w-100"
+              />
+              
+            </div>
+            <div class="col-3">
+                <button type="button" class="btn btn-info shadow-sm w-100" id="geolocationPin">Current</button>
+            </div>
+          </div>
+        </form>
+    
+        <h1 id = "city"></h1>
+        <div class="row">
+          <div class="col-5">
+            <div class="clearfix">
+              <div class="float-left">
+                <span class="temperature" id="temperature"></span
+                ><span class="units"><a href="#" id="celsius-link">°C</a> |
+                   <a href="#" id="fahrenheit-link">°F</a></span>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="weatherInfo">
+            <ul>
+              <li id="precipitation">Precipitation:  10%</li>
+              <li id="humidity"> </li>
+              <li id="windSpeed"> </li>
+               <li id="feelsLike"></li>
+            </ul>
+            </div>
+          </div>
+          <div class="col-2">
+            <span class="weather">
+             <ul>
+          <li id="weatherDescription"></li>
+        </ul>
+          </ul>
+        </span>
+
+          </div>
+        </div>
+        <br>
+        <br>
+<div class="col-6"></div>
+<ul class="weekDays">
+    <li>Monday</li>
+    <li>Tuesday</li>
+    <li>Wednesday</li>
+     <li>Thursday</li>
+    <li>Friday</li>
+   
+</ul>
+</div>
+         
+      </div>
+    </div>
+    <script src="src/java.js"></script>
   </body>
 </html>
