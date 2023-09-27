@@ -20,8 +20,8 @@
       <div class="weather-app">
           <h1 id="date"></h1>
             <h1 id="hour"></h1>
-            <video autoplay loop muted>
-    <source src="images/sunrise.mp4" type="video/mp4">
+            <video autoplay loop muted id="background-video">
+    <source src="" type="video/mp4">
     </video>
       
         <form class="search-form" id="searchCity">
@@ -75,6 +75,8 @@
             <span class="weather">
              <ul>
           <li id="weatherDescription"></li>
+          <div class="clearfix weather-temperature">
+                <img src="" alt="Clear" id="icon" class="float-left" />
         </ul>
           </ul>
         </span>

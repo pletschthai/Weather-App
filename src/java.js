@@ -72,6 +72,13 @@ function showTemperature(response) {
   let precipitation = document.querySelector("#precipitation");
   let apRain = Math.round(response.data.main.precipitation);
   precipitation.innerHTML = `Precipitation: ${apRain}%`;
+
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 //Search Button
@@ -120,3 +127,25 @@ function convertToCelsius(event) {
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
+
+//Changing the background video depending on the time
+window.onload = function timeBackground() {
+  let backgroundVideo = document.getElementById("background-video");
+
+  let currentDate = new Date();
+  let currentHour = currentDate.getHours();
+
+  if (currentHour >= 6 && currentHour < 12) {
+    backgroundVideo.setAttribute = ("src", "/images/sunrise.mp4");
+  } else if (currentHour >= 12 && currentHour < 17) {
+    backgroundVideo.setAttribute = ("src", "/images/morning.mp4");
+  } else if (currentHour >= 17 && currentHour < 20) {
+    backgroundVideo.setAttribute = ("src", "/images/afternoon.mp4");
+  } else if (currentHour >= 20 || currentHour < 0) {
+    backgroundVideo.setAttribute = ("src", "/images/evening.mp4");
+  } else {
+    backgroundVideo.setAttribute = ("src", "/images/night.mp4");
+  }
+};
+
+//dfdsfsdf
