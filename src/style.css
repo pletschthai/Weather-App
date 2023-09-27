@@ -1,5 +1,6 @@
 body {
   font-family: arial, sans-serif;
+  background-color: rgb(70, 185, 170);
 }
 
 h1 {
@@ -142,11 +143,18 @@ li {
 }
 
 .weatherForecast {
-  margin-top: 20px;
-  text-align: center;
-  color: #000;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  width: 100%;
+  padding: 10px 0px;
+  margin-right: 0px;
+  margin-left: 0px;
 }
 
+.weatherForecast:hover {
+  box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.1);
+  transition: all 200ms ease;
+}
 .weatherForecast-date {
   font-size: 16px;
   opacity: 0.5;
@@ -158,4 +166,8 @@ li {
 
 .weatherForecast-temperatures {
   font-size: 13px;
+}
+
+.code-link {
+  text-align: center;
 }
