@@ -16,7 +16,10 @@ function updateHour() {
   let getHours = currentHour.getHours();
   let minutes = currentHour.getMinutes();
 
-  hourElement.innerHTML = getHours + ":" + minutes;
+  // Add leading zeros to minutes if necessary
+  let minutesStr = minutes.toString().padStart(2, "0");
+
+  hourElement.innerHTML = getHours + ":" + minutesStr;
 }
 // Call updateDate initially
 updateDate();
