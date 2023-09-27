@@ -120,23 +120,3 @@ function convertToCelsius(event) {
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
-
-// Changing the Background video depending on the hour
-window.onload = function () {
-  let video = document.querySelector("#background-video");
-
-  var currentDate = new Date();
-  var currentHour = currentDate.getHours();
-
-  if (currentHour >= 6 && currentHour < 12) {
-    video.src = "/images/sunrise.mp4";
-  } else if (currentHour >= 12 && currentHour < 17) {
-    video.src = "/images/morning.mp4";
-  } else if (currentHour >= 17 && currentHour < 20) {
-    video.src = "images/afternoon.mp4";
-  } else if (currentHour >= 20 || currentHour < 0) {
-    video.src = "images/evening.mp4";
-  } else {
-    video.src = "images/night.mp4";
-  }
-};
