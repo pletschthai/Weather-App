@@ -135,17 +135,23 @@ window.onload = function timeBackground() {
   let currentDate = new Date();
   let currentHour = currentDate.getHours();
 
-  if (currentHour >= 6 && currentHour < 7) {
-    backgroundVideo.setAttribute = ("src", "/images/sunrise.mp4");
-  } else if (currentHour >= 7 && currentHour < 12) {
-    backgroundVideo.setAttribute = ("src", "/images/morning.mp4");
+  let sunriseTime = new Date().setHours(6, 0, 0); // Replace with the actual sunrise time
+  let sunsetTime = new Date().setHours(19, 0, 0); // Replace with the actual sunset time
+
+  if (
+    currentHour >= sunriseTime.getHours() &&
+    currentHour < sunriseTime.getHours() + 1
+  ) {
+    backgroundVideo.setAttribute("src", "/images/sunrise.mp4");
+  } else if (currentHour >= sunriseTime.getHours() + 1 && currentHour < 12) {
+    backgroundVideo.setAttribute("src", "/images/morning.mp4");
   } else if (currentHour >= 12 && currentHour < 17) {
-    backgroundVideo.setAttribute = ("src", "/images/afternoon.mp4");
-  } else if (currentHour >= 17 || currentHour < 19) {
-    backgroundVideo.setAttribute = ("src", "/images/sunset.mp4");
-  } else if (currentHour >= 19 || currentHour < 0) {
-    backgroundVideo.setAttribute = ("src", "/images/evening.mp4");
+    backgroundVideo.setAttribute("src", "/images/afternoon.mp4");
+  } else if (currentHour >= 17 && currentHour < sunsetTime.getHours()) {
+    backgroundVideo.setAttribute("src", "/images/sunset.mp4");
+  } else if (currentHour >= sunsetTime.getHours() || currentHour < 0) {
+    backgroundVideo.setAttribute("src", "/images/evening.mp4");
   } else {
-    backgroundVideo.setAttribute = ("src", "/images/night.mp4");
+    backgroundVideo.setAttribute("src", "/images/night.mp4");
   }
 };
