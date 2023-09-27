@@ -122,46 +122,21 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
 
 // Changing the Background video depending on the hour
-function getWeatherData(location) {
-  var apiKey = "c76db1bd2c2a808bab15d20555e59a59";
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-  return fetch(openWeatherMapUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      return data;
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
+window.onload = function () {
+  let video = document.querySelector("#background-video");
 
-function setBackgroundVideo(location) {
-  var videoElem = document.getElementById("background-video");
+  var currentDate = new Date();
+  var currentHour = currentDate.getHours();
 
-  getWeatherData(location).then((data) => {
-    var sunriseTime = new Date(data.sys.sunrise * 1000).getHours();
-    var sunsetTime = new Date(data.sys.sunset * 1000).getHours();
-    var currentTime = new Date().getHours();
-
-    if (currentTime >= sunriseTime && currentTime < 6) {
-      videoElem.src = "sunrise.gif";
-    } else if (currentTime >= 6 && currentTime < 12) {
-      videoElem.src = "morning.mp4";
-    } else if (currentTime >= 12 && currentTime < 17) {
-      videoElem.src = "afternoon.mp4";
-    } else if (currentTime >= 17 && currentTime < sunsetTime) {
-      videoElem.src = "evening.mp4";
-    } else if (currentTime >= sunsetTime && currentTime < 20) {
-      videoElem.src = "sunset.mp4";
-    } else if (currentTime >= 20 && currentTime < 23) {
-      videoElem.src = "night.gif";
-    } else if (currentTime >= 23 || currentTime < sunriseTime) {
-      videoElem.src = "late-night.mp4";
-    }
-  });
-}
-
-window.addEventListener("DOMContentLoaded", function () {
-  var location = searchLocation(position);
-  setBackgroundVideo(location);
-});
+  if (currentHour >= 6 && currentHour < 12) {
+    video.src = "/images/sunrise.mp4";
+  } else if (currentHour >= 12 && currentHour < 17) {
+    video.src = "/images/morning.mp4";
+  } else if (currentHour >= 17 && currentHour < 20) {
+    video.src = "images/afternoon.mp4";
+  } else if (currentHour >= 20 || currentHour < 0) {
+    video.src = "images/evening.mp4";
+  } else {
+    video.src = "images/night.mp4";
+  }
+};

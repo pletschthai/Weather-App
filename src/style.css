@@ -1,6 +1,5 @@
 body {
   font-family: arial, sans-serif;
-  background: transparent;
 }
 
 h1 {
@@ -133,9 +132,4 @@ li {
 
 #geolocationPin {
   position: relative;
-}
-
-.codelink {
-  text-align: center;
-  color: aquamarine;
 }
