@@ -135,17 +135,17 @@ window.onload = function timeBackground() {
   let currentDate = new Date();
   let currentHour = currentDate.getHours();
 
-  if (currentHour >= 6 && currentHour < 12) {
+  if (currentHour >= 6 && currentHour < 7) {
     backgroundVideo.setAttribute = ("src", "/images/sunrise.mp4");
-  } else if (currentHour >= 12 && currentHour < 17) {
+  } else if (currentHour >= 7 && currentHour < 12) {
     backgroundVideo.setAttribute = ("src", "/images/morning.mp4");
-  } else if (currentHour >= 17 && currentHour < 20) {
+  } else if (currentHour >= 12 && currentHour < 17) {
     backgroundVideo.setAttribute = ("src", "/images/afternoon.mp4");
-  } else if (currentHour >= 20 || currentHour < 0) {
+  } else if (currentHour >= 17 || currentHour < 19) {
+    backgroundVideo.setAttribute = ("src", "/images/sunset.mp4");
+  } else if (currentHour >= 19 || currentHour < 0) {
     backgroundVideo.setAttribute = ("src", "/images/evening.mp4");
   } else {
     backgroundVideo.setAttribute = ("src", "/images/night.mp4");
   }
 };
-
-//dfdsfsdf
