@@ -47,12 +47,12 @@ function changeCity(event) {
 
 function showTemperature(response) {
   console.log(response);
-
+  celsiusTemperature = response.data.main.temp;
   let city = document.querySelector("#city");
   city.innerHTML = response.data.name;
 
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
 
   let description = document.querySelector("#weatherDescription");
   description.innerHTML = response.data.weather[0].description;
@@ -105,13 +105,40 @@ function getCurrentLocation(event) {
 let currentLocationButton = document.querySelector("#geolocationPin");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
+//Changing the background video depending on the time
+function timeBackground() {
+  let backgroundVideo = document.getElementById("background-video");
+
+  let currentDate = new Date();
+  let currentHour = currentDate.getHours();
+
+  if (currentHour >= 6 && currentHour < 7) {
+    backgroundVideo.setAttribute("src", "/images/sunrise.mp4");
+  } else if (currentHour >= 7 && currentHour < 12) {
+    backgroundVideo.setAttribute("src", "/images/morning.mp4");
+  } else if (currentHour >= 12 && currentHour < 17) {
+    backgroundVideo.setAttribute("src", "/images/afternoon.mp4");
+  } else if (currentHour >= 17 && currentHour < 19) {
+    backgroundVideo.setAttribute("src", "/images/sunset.mp4");
+  } else if (currentHour >= 19 && currentHour < 0) {
+    backgroundVideo.setAttribute("src", "/images/evening.mp4");
+  } else {
+    backgroundVideo.setAttribute("src", "/images/night.mp4");
+  }
+
+  window.onload = timeBackground;
+}
+
 // Changing temperature by clicking on the link
+
 function convertToFahrenheit(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
   let temperature = temperatureElement.innerHTML;
   console.log(temperature);
-  temperatureElement.innerHTML = Math.round((temperature * 9) / 5 + 32);
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  temperatureElement.innerHTML = Math.round((celsiusTemperature * 9) / 5 + 32);
 }
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
@@ -120,38 +147,10 @@ fahrenheitLink.addEventListener("click", convertToFahrenheit);
 function convertToCelsius(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
-  let temperature = temperatureElement.innerHTML;
-  console.log(temperature);
-  temperatureElement.innerHTML = Math.round((temperature - 32) * (5 / 9));
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
 }
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
-
-//Changing the background video depending on the time
-window.onload = function timeBackground() {
-  let backgroundVideo = document.getElementById("background-video");
-
-  let currentDate = new Date();
-  let currentHour = currentDate.getHours();
-
-  let sunriseTime = new Date().setHours(6, 0, 0); // Replace with the actual sunrise time
-  let sunsetTime = new Date().setHours(19, 0, 0); // Replace with the actual sunset time
-
-  if (
-    currentHour >= sunriseTime.getHours() &&
-    currentHour < sunriseTime.getHours() + 1
-  ) {
-    backgroundVideo.setAttribute("src", "/images/sunrise.mp4");
-  } else if (currentHour >= sunriseTime.getHours() + 1 && currentHour < 12) {
-    backgroundVideo.setAttribute("src", "/images/morning.mp4");
-  } else if (currentHour >= 12 && currentHour < 17) {
-    backgroundVideo.setAttribute("src", "/images/afternoon.mp4");
-  } else if (currentHour >= 17 && currentHour < sunsetTime.getHours()) {
-    backgroundVideo.setAttribute("src", "/images/sunset.mp4");
-  } else if (currentHour >= sunsetTime.getHours() || currentHour < 0) {
-    backgroundVideo.setAttribute("src", "/images/evening.mp4");
-  } else {
-    backgroundVideo.setAttribute("src", "/images/night.mp4");
-  }
-};

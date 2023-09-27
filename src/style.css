@@ -93,6 +93,13 @@ li {
   line-height: 1;
 }
 
+.units .active {
+  color: rgb(33, 33, 33);
+  cursor: default;
+}
+.units .active:hover {
+  text-decoration: none;
+}
 .units {
   position: relative;
   top: -44px;
