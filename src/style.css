@@ -140,3 +140,22 @@ li {
 #geolocationPin {
   position: relative;
 }
+
+.weatherForecast {
+  margin-top: 20px;
+  text-align: center;
+  color: #000;
+}
+
+.weatherForecast-date {
+  font-size: 16px;
+  opacity: 0.5;
+}
+
+.weatherForecast-temperature-min {
+  opacity: 0.5;
+}
+
+.weatherForecast-temperatures {
+  font-size: 13px;
+}

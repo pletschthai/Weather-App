@@ -53,14 +53,12 @@
         <h1 id = "city"></h1>
         <div class="row">
           <div class="col-5">
-            <div class="clearfix">
-              <div class="float-left">
-                <span class="temperature" id="temperature"></span
-                ><span class="units">
-                  <a href="#" id="celsius-link" class="active">°C</a> |
-                   <a href="#" id="fahrenheit-link">°F</a></span>
-              </div>
-            </div>
+           
+            <span class="temperature" id="temperature"></span
+            ><span class="units">
+              <a href="#" id="celsius-link" class="active">°C</a> |
+                <a href="#" id="fahrenheit-link">°F</a></span>
+            
           </div>
           <div class="col">
             <div class="weatherInfo">
@@ -86,17 +84,22 @@
         </div>
         <br>
         <br>
-<div class="col-6"></div>
-<ul class="weekDays">
-    <li>Monday</li>
-    <li>Tuesday</li>
-    <li>Wednesday</li>
-     <li>Thursday</li>
-    <li>Friday</li>
-   
-</ul>
-</div>
-         
+ <div class="weatherForecast">
+            <div class="row">
+              <div class="col-2">
+                <div class="weatherForecast-date">Thu</div>
+                <img
+                  src="http://openweathermap.org/img/wn/50d@2x.png"
+                  alt=""
+                  width="42"
+                />
+                <div class="weatherForecast-temperatures">
+                  <span class="weatherForecast-temperature-max"> 18° </span>
+                  <span class="weatherForecast-temperature-min"> 12° </span>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
    
