@@ -93,7 +93,20 @@ function changeCity(event) {
   let city = document.querySelector("#cityInput").value;
   search(city);
 }
+//Formatting sunrise and sunset
+function formatSun(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
 
+  return `${hours}:${minutes}`;
+}
 //Weather API
 
 function showTemperature(response) {
@@ -130,9 +143,16 @@ function showTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
-
   getForecast(response.data.coord);
+  updateIcon(response.data.weather[0].icon);
+  document.querySelector("#sunrise").innerHTML = formatSun(
+    response.data.sys.sunrise
+  );
+  document.querySelector("#sunset").innerHTML = formatSun(
+    response.data.sys.sunset
+  );
 }
+
 // Forecast coordinates.
 
 function getForecast(coordinates) {
@@ -214,3 +234,33 @@ function convertToCelsius(event) {
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
+
+// Mapping of openweathermap condition codes to custom icon filenames
+const iconFolder = "icons/all";
+const iconMapping = {
+  "01d": "clear-day.svg",
+  "01n": "clear-night.svg",
+  "02d": "partly-cloudy-day.svg",
+  "02n": "partly-cloudy-night.svg",
+  "03d": "cloudy.svg",
+  "03n": "cloudy.svg",
+  "04d": "cloudy.svg",
+  "04n": "cloudy.svg",
+  "09d": "rain.svg",
+  "09n": "rain.svg",
+  "10d": "partly-cloudy-day-rain.svg",
+  "10n": "partly-cloudy-night-rain.svg",
+  "11d": "thunderstorms.svg",
+  "11n": "thunderstorms.svg",
+  "13d": "partly-cloudy-day-snow.svg",
+  "13n": "partly-cloudy-night-snow.svg",
+  "50d": "mist.svg",
+  "50n": "mist.svg",
+};
+
+function updateIcon(response) {
+  const iconElement = document.querySelector("#icon");
+  const conditionCode = response.weather[0].icon;
+  const customIconFilename = iconMapping[conditionCode] || "default-icon.svg";
+  iconElement.setAttribute("src", `${iconFolder}${customIconFilename}`);
+}
