@@ -10,20 +10,8 @@ function updateDate() {
   document.getElementById("date").textContent = formattedDate;
 }
 
-function updateHour() {
-  let hourElement = document.querySelector("#hour");
-  let currentHour = new Date();
-  let getHours = currentHour.getHours();
-  let minutes = currentHour.getMinutes();
-
-  // Add leading zeros to minutes if necessary
-  let minutesStr = minutes.toString().padStart(2, "0");
-
-  hourElement.innerHTML = getHours + ":" + minutesStr;
-}
 // Call updateDate initially
 updateDate();
-updateHour();
 
 // Update the date every second
 setInterval(updateDate, 1000);
@@ -152,10 +140,25 @@ function showTemperature(response) {
   document.querySelector("#sunset").innerHTML = formatSun(
     response.data.sys.sunset
   );
+  let timezoneOffset = response.data.timezone;
+  const utcDate = new Date();
+  const utcHours = utcDate.getUTCHours();
+  const utcMinutes = utcDate.getUTCMinutes();
+  let localHours = utcHours + Math.floor(timezoneOffset / 3600);
+  let localMinutes = utcMinutes + Math.floor((timezoneOffset % 3600) / 60);
+  if (localHours >= 24) {
+    localHours -= 24;
+  } else if (localHours < 0) {
+    localHours += 24;
+  }
+  const formattedTime = `${localHours
+    .toString()
+    .padStart(2, "0")}:${localMinutes.toString().padStart(2, "0")}`;
+  document.querySelector("#hour").innerHTML = formattedTime;
+
   getForecast(response.data.coord);
   updateIcon(response.data.weather[0].icon);
 }
-
 // Forecast coordinates.
 
 function getForecast(coordinates) {
