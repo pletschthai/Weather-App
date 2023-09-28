@@ -44,13 +44,7 @@ function displayForecast(response) {
       <div class="col-2">
       <div class= dayForecast>
         <div class="weather-forecast-date">${formatDay(forecastDate.dt)}</div>
-        <img
-          src="http://openweathermap.org/img/wn/${
-            forecastDate.weather[0].icon
-          }@2x.png"
-          alt=""
-          width="42"
-        />
+        <img src="" alt="Clear" id="icon" class="float-left" />
         <div class="weather-forecast-temperatures">
           <span class="weather-forecast-temperature-max"> ${Math.round(
             forecastDate.temp.max
@@ -124,10 +118,47 @@ function showTemperature(response) {
   feelsLike.innerHTML = `Feels Like: ${apTemp}°C`;
 
   let iconElement = document.querySelector("#icon");
-  iconElement.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
+  let iconApi = response.data.weather[0].icon;
+  console.log(iconApi);
+
+  if (iconApi === "01d") {
+    iconElement.setAttribute("src", "openweathermap/01d.svg");
+  } else if (iconApi === "01n") {
+    iconElement.setAttribute("src", "openweathermap/01n.svg");
+  } else if (iconApi === "02n") {
+    iconElement.setAttribute("src", "openweathermap/02n.svg");
+  } else if (iconApi === "02d") {
+    iconElement.setAttribute("src", "openweathermap/02d.svg");
+  } else if (iconApi === "03d") {
+    iconElement.setAttribute("src", "openweathermap/03d.svg");
+  } else if (iconApi === "03n") {
+    iconElement.setAttribute("src", "openweathermap/03n.svg");
+  } else if (iconApi === "04d") {
+    iconElement.setAttribute("src", "openweathermap/04d.svg");
+  } else if (iconApi === "04n") {
+    iconElement.setAttribute("src", "openweathermap/04n.svg");
+  } else if (iconApi === "09d") {
+    iconElement.setAttribute("src", "openweathermap/09d.svg");
+  } else if (iconApi === "09n") {
+    iconElement.setAttribute("src", "openweathermap/09n.svg");
+  } else if (iconApi === "10d") {
+    iconElement.setAttribute("src", "openweathermap/10d.svg");
+  } else if (iconApi === "10n") {
+    iconElement.setAttribute("src", "openweathermap/10n.svg");
+  } else if (iconApi === "11d") {
+    iconElement.setAttribute("src", "openweathermap/11d.svg");
+  } else if (iconApi === "11n") {
+    iconElement.setAttribute("src", "openweathermap/11n.svg");
+  } else if (iconApi === "13d") {
+    iconElement.setAttribute("src", "openweathermap/13d.svg");
+  } else if (iconApi === "13n") {
+    iconElement.setAttribute("src", "openweathermap/13n.svg");
+  } else if (iconApi === "50d") {
+    iconElement.setAttribute("src", "openweathermap/50d.svg");
+  } else if (iconApi === "50n") {
+    iconElement.setAttribute("src", "openweathermap/50n.svg");
+  }
+
   iconElement.setAttribute("alt", response.data.weather[0].description);
 
   document.querySelector("#sunrise").innerHTML = formatSun(
@@ -153,7 +184,6 @@ function showTemperature(response) {
   document.querySelector("#hour").innerHTML = formattedTime;
 
   getForecast(response.data.coord);
-  updateIcon(response.data.weather[0].icon);
 }
 // Forecast coordinates.
 
@@ -234,33 +264,3 @@ function convertToCelsius(event) {
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
-
-// Mapping of openweathermap condition codes to custom icon filenames
-const iconFolder = "icons/all";
-const iconMapping = {
-  "01d": "clear-day.svg",
-  "01n": "clear-night.svg",
-  "02d": "partly-cloudy-day.svg",
-  "02n": "partly-cloudy-night.svg",
-  "03d": "cloudy.svg",
-  "03n": "cloudy.svg",
-  "04d": "cloudy.svg",
-  "04n": "cloudy.svg",
-  "09d": "rain.svg",
-  "09n": "rain.svg",
-  "10d": "partly-cloudy-day-rain.svg",
-  "10n": "partly-cloudy-night-rain.svg",
-  "11d": "thunderstorms.svg",
-  "11n": "thunderstorms.svg",
-  "13d": "partly-cloudy-day-snow.svg",
-  "13n": "partly-cloudy-night-snow.svg",
-  "50d": "mist.svg",
-  "50n": "mist.svg",
-};
-
-function updateIcon(response) {
-  const iconElement = document.querySelector("#icon");
-  const conditionCode = response.weather[0].icon;
-  const customIconFilename = iconMapping[conditionCode] || "default-icon.svg";
-  iconElement.setAttribute("src", `${iconFolder}${customIconFilename}`);
-}

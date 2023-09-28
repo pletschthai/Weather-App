@@ -54,13 +54,13 @@ li {
 }
 
 #date {
-  color: black;
+  color: rgb(255, 255, 255);
   font-size: 16px;
   position: relative;
   z-index: 9999;
   top: -60px;
   left: -40px;
-  text-shadow: 1px 1px 10px rgba(252, 252, 252, 0.3);
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.6);
 }
 
 #hour {
@@ -71,7 +71,7 @@ li {
   top: -60px;
   right: -520px;
   font-size: 50px;
-  text-shadow: 1px 1px 10px rgba(252, 252, 252, 0.3);
+  text-shadow: 1px 1px 10px rgba(252, 252, 252, 0.6);
 }
 
 #city {
@@ -84,7 +84,7 @@ li {
   position: relative;
   text-transform: capitalize;
   text-align: left;
-  text-shadow: 1px 1px 10px rgba(252, 252, 252, 0.4);
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
 }
 
 .weather-icon {
@@ -98,12 +98,13 @@ li {
   font-weight: 400;
   line-height: 1;
   text-align: center;
-  text-shadow: 1px 1px 10px rgba(252, 252, 252, 0.3);
+  text-shadow: 1px 1px 10px rgba(252, 252, 252, 0.6);
 }
 
 .units .active {
   color: rgb(33, 33, 33);
   cursor: default;
+  text-shadow: 1px 1px 10px rgba(252, 252, 252, 0.6);
 }
 .units .active:hover {
   text-decoration: none;
