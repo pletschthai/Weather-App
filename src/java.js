@@ -49,11 +49,12 @@ function displayForecast(response) {
 
   let forecastHTML = `<div class="row mt-3">`;
   forecast.forEach(function (forecastDate, index) {
-    if (index < 6) {
+    if (index > 0 && index < 7) {
       forecastHTML =
         forecastHTML +
         `
       <div class="col-2">
+      <div class= dayForecast>
         <div class="weather-forecast-date">${formatDay(forecastDate.dt)}</div>
         <img
           src="http://openweathermap.org/img/wn/${
@@ -69,6 +70,7 @@ function displayForecast(response) {
           <span class="weather-forecast-temperature-min"> ${Math.round(
             forecastDate.temp.min
           )}° </span>
+        </div>
         </div>
       </div>
   `;
@@ -143,14 +145,15 @@ function showTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
-  getForecast(response.data.coord);
-  updateIcon(response.data.weather[0].icon);
+
   document.querySelector("#sunrise").innerHTML = formatSun(
     response.data.sys.sunrise
   );
   document.querySelector("#sunset").innerHTML = formatSun(
     response.data.sys.sunset
   );
+  getForecast(response.data.coord);
+  updateIcon(response.data.weather[0].icon);
 }
 
 // Forecast coordinates.
@@ -187,28 +190,26 @@ currentLocationButton.addEventListener("click", getCurrentLocation);
 
 //Changing the background video depending on the time
 function timeBackground() {
-  let backgroundVideo = document.getElementById("background-video");
+  let backgroundVideo = document.querySelector("#background-video");
 
   let currentDate = new Date();
   let currentHour = currentDate.getHours();
 
   if (currentHour >= 6 && currentHour < 7) {
-    backgroundVideo.setAttribute("src", "/images/sunrise.mp4");
+    backgroundVideo.setAttribute("src", "images/sunrise.mp4");
   } else if (currentHour >= 7 && currentHour < 12) {
-    backgroundVideo.setAttribute("src", "/images/morning.mp4");
+    backgroundVideo.setAttribute("src", "images/morning.mp4");
   } else if (currentHour >= 12 && currentHour < 17) {
-    backgroundVideo.setAttribute("src", "/images/afternoon.mp4");
+    backgroundVideo.setAttribute("src", "images/afternoon.mp4");
   } else if (currentHour >= 17 && currentHour < 19) {
-    backgroundVideo.setAttribute("src", "/images/sunset.mp4");
+    backgroundVideo.setAttribute("src", "images/sunset.mp4");
   } else if (currentHour >= 19 && currentHour < 0) {
-    backgroundVideo.setAttribute("src", "/images/evening.mp4");
+    backgroundVideo.setAttribute("src", "images/evening.mp4");
   } else {
-    backgroundVideo.setAttribute("src", "/images/night.mp4");
+    backgroundVideo.setAttribute("src", "images/night.mp4");
   }
-
-  window.onload = timeBackground;
 }
-
+timeBackground();
 // Changing temperature by clicking on the link
 
 function convertToFahrenheit(event) {
