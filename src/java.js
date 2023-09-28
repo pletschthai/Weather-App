@@ -44,7 +44,13 @@ function displayForecast(response) {
       <div class="col-2">
       <div class= dayForecast>
         <div class="weather-forecast-date">${formatDay(forecastDate.dt)}</div>
-        <img src="" alt="Clear" id="icon" class="float-left" />
+        <img
+          src="http://openweathermap.org/img/wn/${
+            forecastDate.weather[0].icon
+          }@2x.png"
+          alt=""
+          width="42"
+        />
         <div class="weather-forecast-temperatures">
           <span class="weather-forecast-temperature-max"> ${Math.round(
             forecastDate.temp.max
@@ -230,9 +236,9 @@ function timeBackground() {
     backgroundVideo.setAttribute("src", "images/morning.mp4");
   } else if (currentHour >= 12 && currentHour < 17) {
     backgroundVideo.setAttribute("src", "images/afternoon.mp4");
-  } else if (currentHour >= 17 && currentHour < 19) {
+  } else if (currentHour >= 17 && currentHour < 20) {
     backgroundVideo.setAttribute("src", "images/sunset.mp4");
-  } else if (currentHour >= 19 && currentHour < 0) {
+  } else if (currentHour >= 20 && currentHour < 0) {
     backgroundVideo.setAttribute("src", "images/evening.mp4");
   } else {
     backgroundVideo.setAttribute("src", "images/night.mp4");
