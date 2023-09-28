@@ -60,6 +60,7 @@ li {
   z-index: 9999;
   top: -60px;
   left: -40px;
+  text-shadow: 1px 1px 10px rgba(252, 252, 252, 0.3);
 }
 
 #hour {
@@ -68,8 +69,9 @@ li {
   position: relative;
   z-index: 9999;
   top: -60px;
-  right: -420px;
+  right: -520px;
   font-size: 50px;
+  text-shadow: 1px 1px 10px rgba(252, 252, 252, 0.3);
 }
 
 #city {
@@ -77,10 +79,12 @@ li {
   font-size: 32px;
   font-weight: 100;
   line-height: 28px;
-  margin: 5px;
+  margin: 25px;
   z-index: 9999;
   position: relative;
   text-transform: capitalize;
+  text-align: left;
+  text-shadow: 1px 1px 10px rgba(252, 252, 252, 0.4);
 }
 
 .weather-icon {
@@ -93,6 +97,8 @@ li {
   font-size: 90px;
   font-weight: 400;
   line-height: 1;
+  text-align: center;
+  text-shadow: 1px 1px 10px rgba(252, 252, 252, 0.3);
 }
 
 .units .active {
@@ -161,7 +167,7 @@ li {
   padding: 10px 0px;
   margin-right: 0px;
   margin-left: 0px;
-  background: #dadde1;
+  background: rgb(130, 167, 190);
   opacity: 90%;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
   margin-bottom: -20px;

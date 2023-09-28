@@ -51,8 +51,9 @@
         </form>
     
         <h1 id = "city"></h1>
-        <div class="row">
-          <div class="col-5">
+        <div class="row" >
+           
+          <div class="col" id="tempCol">
            
             <span class="temperature" id="temperature"></span
             ><span class="units">
@@ -60,8 +61,43 @@
                 <a href="#" id="fahrenheit-link">°F</a></span>
             
           </div>
-          <div class="col">
-            <div class="weatherInfo">
+          <div class="col" id="blankCol">
+        
+          </div>
+          <div class="col-2" id="iconCol">
+            <span class="weather">
+             <ul>
+          <li id="weatherDescription"></li>
+          <div class="clearfix weather-temperature">
+                <img src="" alt="Clear" id="icon" class="float-left" />
+          </ul>
+      </span>
+          </div>
+
+<div class="row">
+    <div class="col">
+        
+          </div>
+    <div class="col-3"> 
+      <ul>
+        <li><small>Sunrise</small></li>
+        <img src="https://bmcdn.nl/assets/weather-icons/v2.0/line/sunrise.svg"
+          alt="Sunrise"
+          height="48"
+        />
+          <li id="sunrise"></li>
+      </div>
+    <div class="col-3">
+      <ul>
+        <li><small>Sunset</small></li>
+          <img src="https://bmcdn.nl/assets/weather-icons/v2.0/line/sunset.svg"
+          alt="Sunset"
+          height="48"
+        />
+      <li id="sunset"> Sunset</li></div>
+      </ul>
+      <div class="col-3">
+<div class="weatherInfo">
             <ul>
               <li id="precipitation">Precipitation:  10%</li>
               <li id="humidity"> </li>
@@ -69,42 +105,14 @@
                <li id="feelsLike"></li>
             </ul>
             </div>
+      </div>
+<div class="weatherForecast" id="forecast"></div>
+            </div>
           </div>
-          <div class="col-2">
-            <span class="weather">
-             <ul>
-          <li id="weatherDescription"></li>
-          <div class="clearfix weather-temperature">
-                <img src="" alt="Clear" id="icon" class="float-left" />
-          </ul>
-      </li>
-        <ul>
-           <img
-          src="https://bmcdn.nl/assets/weather-icons/v2.0/line/sunrise.svg"
-          alt="Sunrise"
-          height="48"
-        />
-      <li id="sunrise">
-        </li>
-       <img
-          src="https://bmcdn.nl/assets/weather-icons/v2.0/line/sunset.svg"
-          alt="Sunset"
-          height="48"
-        />
-      <li id="sunset">
-    </ul>
-              
         </span>
-
           </div>
         </div>
-        <br>
-        <br>
- <div class="weatherForecast" id="forecast">
-      </div>
     </div>
-   
-     
        <small>
      <div class="code-link">
         <a href="https://github.com/pletschthai/Weather-App" target="_blank"
