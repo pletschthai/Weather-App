@@ -115,9 +115,18 @@ li {
 }
 
 .search-form {
-  margin-bottom: 20px;
+  padding: 0px;
+  margin-bottom: -30px;
   position: relative;
   top: -27px;
+}
+
+#geolocationPin {
+  position: relative;
+  right: -150px;
+  top: -37px;
+  cursor: pointer;
+  padding: 0px;
 }
 
 .weather {
@@ -143,10 +152,6 @@ li {
 
 #weatherDescription {
   text-transform: capitalize;
-}
-
-#geolocationPin {
-  position: relative;
 }
 
 .weatherForecast {

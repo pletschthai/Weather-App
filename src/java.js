@@ -123,10 +123,6 @@ function showTemperature(response) {
   let apTemp = Math.round(response.data.main.feels_like);
   feelsLike.innerHTML = `Feels Like: ${apTemp}°C`;
 
-  let precipitation = document.querySelector("#precipitation");
-  let apRain = Math.round(response.data.main.precipitation);
-  precipitation.innerHTML = `Precipitation: ${apRain}%`;
-
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute(
     "src",
