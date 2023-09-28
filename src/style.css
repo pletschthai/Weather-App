@@ -41,7 +41,7 @@ li {
   border-radius: 30px;
   max-width: 860px;
   overflow: hidden;
-  box-shadow: -1px 10px 62px 15px rgba(65, 162, 221, 1);
+  box-shadow: -1px 10px 62px 15px rgb(34, 107, 153);
 }
 
 .weather-app video {
@@ -167,7 +167,7 @@ li {
   margin-bottom: -20px;
 }
 .dayForecast:hover {
-  box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 1px 15px rgba(255, 255, 255, 0.9);
   transition: all 200ms ease;
 }
 
