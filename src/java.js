@@ -44,13 +44,9 @@ function displayForecast(response) {
       <div class="col-2">
       <div class= dayForecast>
         <div class="weather-forecast-date">${formatDay(forecastDate.dt)}</div>
-        <img
-          src="http://openweathermap.org/img/wn/${
-            forecastDate.weather[0].icon
-          }@2x.png"
-          alt=""
-          width="42"
-        />
+        <img src="${getIconSrc(
+          forecastDate.weather[0].icon
+        )}" alt="Clear" id="icon" class="float-left" />
         <div class="weather-forecast-temperatures">
           <span class="weather-forecast-temperature-max"> ${Math.round(
             forecastDate.temp.max
@@ -98,6 +94,46 @@ function formatSun(timestamp) {
   return `${hours}:${minutes}`;
 }
 //Weather API
+function getIconSrc(iconApi) {
+  if (iconApi === "01d") {
+    return "openweathermap/01d.svg";
+  } else if (iconApi === "01n") {
+    return "openweathermap/01n.svg";
+  } else if (iconApi === "02n") {
+    return "openweathermap/02n.svg";
+  } else if (iconApi === "02d") {
+    return "openweathermap/02d.svg";
+  } else if (iconApi === "03d") {
+    return "openweathermap/03d.svg";
+  } else if (iconApi === "03n") {
+    return "openweathermap/03n.svg";
+  } else if (iconApi === "04d") {
+    return "openweathermap/04d.svg";
+  } else if (iconApi === "04n") {
+    return "openweathermap/04n.svg";
+  } else if (iconApi === "09d") {
+    return "openweathermap/09d.svg";
+  } else if (iconApi === "09n") {
+    return "openweathermap/09n.svg";
+  } else if (iconApi === "10d") {
+    return "openweathermap/10d.svg";
+  } else if (iconApi === "10n") {
+    return "openweathermap/10n.svg";
+  } else if (iconApi === "11d") {
+    return "openweathermap/11d.svg";
+  } else if (iconApi === "11n") {
+    return "openweathermap/11n.svg";
+  } else if (iconApi === "13d") {
+    return "openweathermap/13d.svg";
+  } else if (iconApi === "13n") {
+    return "openweathermap/13n.svg";
+  } else if (iconApi === "50d") {
+    return "openweathermap/50d.svg";
+  } else if (iconApi === "50n") {
+    return "openweathermap/50n.svg";
+  }
+  return "";
+}
 
 function showTemperature(response) {
   console.log(response);
@@ -127,44 +163,7 @@ function showTemperature(response) {
   let iconApi = response.data.weather[0].icon;
   console.log(iconApi);
 
-  if (iconApi === "01d") {
-    iconElement.setAttribute("src", "openweathermap/01d.svg");
-  } else if (iconApi === "01n") {
-    iconElement.setAttribute("src", "openweathermap/01n.svg");
-  } else if (iconApi === "02n") {
-    iconElement.setAttribute("src", "openweathermap/02n.svg");
-  } else if (iconApi === "02d") {
-    iconElement.setAttribute("src", "openweathermap/02d.svg");
-  } else if (iconApi === "03d") {
-    iconElement.setAttribute("src", "openweathermap/03d.svg");
-  } else if (iconApi === "03n") {
-    iconElement.setAttribute("src", "openweathermap/03n.svg");
-  } else if (iconApi === "04d") {
-    iconElement.setAttribute("src", "openweathermap/04d.svg");
-  } else if (iconApi === "04n") {
-    iconElement.setAttribute("src", "openweathermap/04n.svg");
-  } else if (iconApi === "09d") {
-    iconElement.setAttribute("src", "openweathermap/09d.svg");
-  } else if (iconApi === "09n") {
-    iconElement.setAttribute("src", "openweathermap/09n.svg");
-  } else if (iconApi === "10d") {
-    iconElement.setAttribute("src", "openweathermap/10d.svg");
-  } else if (iconApi === "10n") {
-    iconElement.setAttribute("src", "openweathermap/10n.svg");
-  } else if (iconApi === "11d") {
-    iconElement.setAttribute("src", "openweathermap/11d.svg");
-  } else if (iconApi === "11n") {
-    iconElement.setAttribute("src", "openweathermap/11n.svg");
-  } else if (iconApi === "13d") {
-    iconElement.setAttribute("src", "openweathermap/13d.svg");
-  } else if (iconApi === "13n") {
-    iconElement.setAttribute("src", "openweathermap/13n.svg");
-  } else if (iconApi === "50d") {
-    iconElement.setAttribute("src", "openweathermap/50d.svg");
-  } else if (iconApi === "50n") {
-    iconElement.setAttribute("src", "openweathermap/50n.svg");
-  }
-
+  iconElement.setAttribute("src", getIconSrc(iconApi));
   iconElement.setAttribute("alt", response.data.weather[0].description);
 
   document.querySelector("#sunrise").innerHTML = formatSun(
@@ -236,9 +235,9 @@ function timeBackground() {
     backgroundVideo.setAttribute("src", "images/morning.mp4");
   } else if (currentHour >= 12 && currentHour < 17) {
     backgroundVideo.setAttribute("src", "images/afternoon.mp4");
-  } else if (currentHour >= 17 && currentHour < 20) {
+  } else if (currentHour >= 17 && currentHour < 19) {
     backgroundVideo.setAttribute("src", "images/sunset.mp4");
-  } else if (currentHour >= 20 && currentHour < 0) {
+  } else if (currentHour >= 19 && currentHour < 0) {
     backgroundVideo.setAttribute("src", "images/evening.mp4");
   } else {
     backgroundVideo.setAttribute("src", "images/night.mp4");
