@@ -90,7 +90,6 @@ function formatSun(timestamp) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-
   return `${hours}:${minutes}`;
 }
 //Weather API

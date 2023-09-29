@@ -13,7 +13,10 @@
     <title>Weather App</title>
     <link rel="stylesheet" href="src/style.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-  </head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baskervville&family=Borel&family=Handlee&family=Josefin+Slab&family=Nanum+Myeongjo&family=Pacifico&family=Prata&display=swap" rel="stylesheet">
+</head>
 
   <body>
     <div class="container">
@@ -82,11 +85,16 @@
 
 <div class="row">
     <div class="col">
-        
+        <li id="moonphase"><small>Moonphase</small></li>
+        <img src="https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/moon-full.svg"
+          alt="Moonphase"
+          height="48"
+        />
+          <li id="moon"><small>Full Moon</small></li>
           </div>
     <div class="col-3"> 
       <ul>
-        <li><small>Sunrise</small></li>
+        <li id="sunUp"><small>Sunrise</small></li>
         <img src="https://bmcdn.nl/assets/weather-icons/v2.0/line/sunrise.svg"
           alt="Sunrise"
           height="48"
@@ -95,7 +103,7 @@
       </div>
     <div class="col-3">
       <ul>
-        <li><small>Sunset</small></li>
+        <li id="sunDown"><small>Sunset</small></li>
           <img src="https://bmcdn.nl/assets/weather-icons/v2.0/line/sunset.svg"
           alt="Sunset"
           height="48"
@@ -104,10 +112,10 @@
       </ul>
       <div class="col-3">
 <div class="weatherInfo">
-            <ul>
+            <ul id="weatherInformation">
               <li id="humidity"> </li>
               <li id="windSpeed"> </li>
-               <li id="feelsLike"></li>
+              <li id="feelsLike"></li>
             </ul>
             </div>
       </div>
