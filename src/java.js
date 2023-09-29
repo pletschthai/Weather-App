@@ -135,6 +135,29 @@ function getIconSrc(iconApi) {
   return "";
 }
 
+function getFormattedTime(timezoneOffset) {
+  const utcDate = new Date();
+  const utcHours = utcDate.getUTCHours();
+  const utcMinutes = utcDate.getUTCMinutes();
+  let localHours = utcHours + Math.floor(timezoneOffset / 3600);
+  let localMinutes = utcMinutes + Math.floor((timezoneOffset % 3600) / 60);
+
+  if (localHours >= 24) {
+    localHours -= 24;
+  } else if (localHours < 0) {
+    localHours += 24;
+  }
+
+  if (localMinutes >= 60) {
+    localHours += Math.floor(localMinutes / 60);
+    localMinutes %= 60;
+  }
+  const formattedTime = `${localHours
+    .toString()
+    .padStart(2, "0")}:${localMinutes.toString().padStart(2, "0")}`;
+  return formattedTime;
+}
+
 function showTemperature(response) {
   console.log(response);
   celsiusTemperature = response.data.main.temp;
@@ -172,22 +195,11 @@ function showTemperature(response) {
   document.querySelector("#sunset").innerHTML = formatSun(
     response.data.sys.sunset
   );
-  let timezoneOffset = response.data.timezone;
-  const utcDate = new Date();
-  const utcHours = utcDate.getUTCHours();
-  const utcMinutes = utcDate.getUTCMinutes();
-  let localHours = utcHours + Math.floor(timezoneOffset / 3600);
-  let localMinutes = utcMinutes + Math.floor((timezoneOffset % 3600) / 60);
-  if (localHours >= 24) {
-    localHours -= 24;
-  } else if (localHours < 0) {
-    localHours += 24;
-  }
-  const formattedTime = `${localHours
-    .toString()
-    .padStart(2, "0")}:${localMinutes.toString().padStart(2, "0")}`;
-  document.querySelector("#hour").innerHTML = formattedTime;
-
+  document.querySelector("#hour").innerHTML = getFormattedTime(
+    response.data.timezone
+  );
+  const formattedTimezone = getFormattedTime(response.data.timezone);
+  timeBackground(formattedTimezone);
   getForecast(response.data.coord);
 }
 // Forecast coordinates.
@@ -223,27 +235,26 @@ let currentLocationButton = document.querySelector("#geolocationPin");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
 //Changing the background video depending on the time
-function timeBackground() {
+function timeBackground(time) {
   let backgroundVideo = document.querySelector("#background-video");
 
-  let currentDate = new Date();
-  let currentHour = currentDate.getHours();
+  let currentHour = time.split(":")[0];
 
   if (currentHour >= 6 && currentHour < 7) {
     backgroundVideo.setAttribute("src", "images/sunrise.mp4");
   } else if (currentHour >= 7 && currentHour < 12) {
     backgroundVideo.setAttribute("src", "images/morning.mp4");
-  } else if (currentHour >= 12 && currentHour < 17) {
+  } else if (currentHour >= 12 && currentHour < 16) {
     backgroundVideo.setAttribute("src", "images/afternoon.mp4");
-  } else if (currentHour >= 17 && currentHour < 19) {
+  } else if (currentHour >= 16 && currentHour < 19) {
     backgroundVideo.setAttribute("src", "images/sunset.mp4");
-  } else if (currentHour >= 19 && currentHour < 0) {
+  } else if (currentHour >= 19 && currentHour < 21) {
     backgroundVideo.setAttribute("src", "images/evening.mp4");
   } else {
     backgroundVideo.setAttribute("src", "images/night.mp4");
   }
 }
-timeBackground();
+timeBackground(`${new Date().getHours()}:${new Date().getMinutes()}`);
 // Changing temperature by clicking on the link
 
 function convertToFahrenheit(event) {
